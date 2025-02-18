@@ -1,0 +1,23 @@
+name: Matrix_Flow
+on: 
+  workflow_dispatch:
+
+jobs:
+    ubuntu-run:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v4 
+        - name: Display Docker Details
+          run: docker info
+        - name: Run Image
+          run: docker run hello-world
+    windows-run:
+        runs-on: windows-latest
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v4 
+        - name: Display Docker Details
+          run: docker info
+        - name: Run Image
+          run: docker run hello-world
