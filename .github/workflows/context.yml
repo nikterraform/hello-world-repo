@@ -1,0 +1,33 @@
+name: context_If
+on: 
+  push:
+  # workflow_dispatch:
+  # schedule:
+  #  - cron: '*/1 * * * *'
+
+jobs:
+    hello-job1:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v4 
+        - name: Hello world
+          run: echo "Hello, Nik!" > hello.txt
+        - name: Archive
+          uses: actions/upload-artifact@v4
+          with:
+            name: hello-artifact
+            path: hello.txt
+
+    download1:
+        if: github.ref == 'refs/heads/main'
+        runs-on: ubuntu-latest
+        needs: hello-job1
+        steps:
+        - name: Download artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: hello-artifact
+            path: ./artifacts
+        - name: List files
+          run: cat ./artifacts/hello.txt
