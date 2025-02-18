@@ -2,10 +2,9 @@ name: Hello World
 on: 
   schedule:
     - cron: '1 0 * * *'
-# push
 
 jobs:
-    hello-job:
+    hello-job1:
         runs-on: ubuntu-latest
         steps:
         - name: Checkout code
@@ -18,9 +17,9 @@ jobs:
             name: hello-artifact
             path: hello.txt
 
-    download:
+    download1:
         runs-on: ubuntu-latest
-        needs: hello-job
+        needs: hello-job1
         steps:
         - name: Download artifact
           uses: actions/download-artifact@v4
