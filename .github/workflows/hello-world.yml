@@ -8,7 +8,7 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v4 
         - name: Hello world
-          run: echo "Hello, Nik!"" > hello.txt
+          run: echo "Hello, Nik!" > hello.txt
         - name: Archive
           uses: actions/upload-artifact@v4
           with:
