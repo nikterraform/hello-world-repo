@@ -1,6 +1,9 @@
 name: Hello World
 on: [push]
 
+env:
+  ACCESS_ID: ${{ vars.ACCESS_ID }}
+
 jobs:
     hello-job:
         runs-on: ubuntu-latest
@@ -26,3 +29,9 @@ jobs:
             path: ./artifacts
         - name: List files
           run: cat ./artifacts/hello.txt
+
+    varfile:
+        runs-on: ubuntu-latest
+        steps:
+        - name: view variable
+          run: echo $ACCESS_ID
