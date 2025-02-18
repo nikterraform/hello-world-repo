@@ -1,0 +1,19 @@
+name: Matrix_Flow_Multi_Image
+on: 
+  workflow_dispatch:
+
+jobs:
+    deploy:
+      strategy:
+        matrix:
+          os: [ubuntu-latest, windows-latest]
+          image: [hello-world, alpine]
+      runs-on: ${{ matrix.os }}
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4 
+        - name: Display Docker Details
+          run: docker info
+        - name: Run Image on ${{ matrix.os }}
+          run: docker run ${{ matrix.image }}
+
